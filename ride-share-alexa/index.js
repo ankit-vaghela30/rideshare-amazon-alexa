@@ -1,6 +1,4 @@
 var Alexa = require('alexa-sdk');
-// var AmazonDateParser = require('amazon-date-parser');
-
 var roleSlot = undefined;
 var source = undefined;
 var date = undefined;
@@ -40,6 +38,7 @@ var handlers = {
     if(roleSlot.toUpperCase() == "DRIVER"){
     this.emit(':ask', 'What is your Phone Number');
     }else{
+    //Belo code can be used to send sms. Not tested.
     /*awsSDK.config.region = 'us-east-1';
     var sns = new awsSDK.SNS();
 
@@ -55,10 +54,10 @@ var handlers = {
     });*/
 
 
-    //get starts here!
+    //search for rides starts here!
     var SourceToReturn=undefined;
     var self = this;
-  var params = {
+    var params = {
           ExpressionAttributeValues: {
             ":s":source,
              ":d":destination,
@@ -73,19 +72,14 @@ var handlers = {
             }
         };
 
-        documentClient.query(params, function(err, data) {
-
+     documentClient.query(params, function(err, data) {
          if (err)
          {
-
-           // this.emit(':tell','error found');
             console.log("error:"+err);
             self.emit(':tell','You failed miserably');
          }
          else
          {
-
-           // this.emit(':tell','data found');
             console.log("data succeeded:");
             var counter = 1;
             data.Items.forEach(item => {
@@ -96,17 +90,12 @@ var handlers = {
                                        console.log(item.Phone);
                                        console.log(item.Source);
                                 driverArray.push(item.Phone)
-                counter++;
+                                counter++;
                   });
           searchResultMessage = "Here are your search results. "+ tempMessage+" Select any number or do you want me to repeat?";
           self.emit(':ask', searchResultMessage);
          }
         });
-       //get ends here
-
-
-      //searchResultMessage = "Here are your search results "+ tempMessage+" Select any number or do you want me to repeat?";
-     //self.emit(':ask', searchResultMessage);
     }
   },
 
@@ -150,9 +139,6 @@ var handlers = {
           self.emit(':tell', 'Okay, I have noted it. If anyone wants to ride with you, he or she will contact you');
         }
       });
-
-    //this.emit(':tell', 'Okay, I have noted it. If anyone wants to ride with you, he or she will contact you');
-
   },
   'Unhandled': function () {
     this.emit(':tell', 'Sorry, I don\'t know what to do');
