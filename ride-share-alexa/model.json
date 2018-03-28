@@ -1,0 +1,332 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "ride share",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "DateAndTime",
+                    "slots": [
+                        {
+                            "name": "Date",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "It's {Date}",
+                                "on {Date}"
+                            ]
+                        },
+                        {
+                            "name": "Time",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "at {Time}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "I want to go {Date} at {Time}",
+                        "I want to go on {Date} at {Time}",
+                        "on {Date} at {Time}",
+                        "I wanna to go on {Date} at {Time}",
+                        "Let's say on {Date} at {Time}"
+                    ]
+                },
+                {
+                    "name": "DriverOrRider",
+                    "slots": [
+                        {
+                            "name": "role",
+                            "type": "role",
+                            "samples": [
+                                "I am a {role}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "a {role}",
+                        "{role}",
+                        "I am a {role}"
+                    ]
+                },
+                {
+                    "name": "FromToIntent",
+                    "slots": [
+                        {
+                            "name": "source",
+                            "type": "AMAZON.US_CITY",
+                            "samples": [
+                                "from {source}"
+                            ]
+                        },
+                        {
+                            "name": "destination",
+                            "type": "AMAZON.US_CITY",
+                            "samples": [
+                                "to {destination}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "I want to go from {source} to {destination} "
+                    ]
+                },
+                {
+                    "name": "IntentNumber",
+                    "slots": [
+                        {
+                            "name": "no",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "The number is {no}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "I want to go with {no}",
+                        "number is {no}",
+                        "{no}",
+                        "I will select {no}"
+                    ]
+                },
+                {
+                    "name": "IntentReiterate",
+                    "slots": [
+                        {
+                            "name": "YesOrNo",
+                            "type": "String"
+                        }
+                    ],
+                    "samples": [
+                        "{YesOrNo} Please",
+                        "{YesOrNo}"
+                    ]
+                },
+                {
+                    "name": "PhoneNumber",
+                    "slots": [
+                        {
+                            "name": "PhoneNo",
+                            "type": "AMAZON.PhoneNumber",
+                            "samples": [
+                                "It's {PhoneNo}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "My phone number is {PhoneNo}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "role",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "driver"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rider"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "String",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Yes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "No"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "DateAndTime",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-DateAndTime.IntentSlot-Date"
+                            }
+                        },
+                        {
+                            "name": "Time",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-DateAndTime.IntentSlot-Time"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DriverOrRider",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "role",
+                            "type": "role",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-DriverOrRider.IntentSlot-role"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "FromToIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "source",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-FromToIntent.IntentSlot-source"
+                            }
+                        },
+                        {
+                            "name": "destination",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-FromToIntent.IntentSlot-destination"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "IntentNumber",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "no",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-IntentNumber.IntentSlot-no"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PhoneNumber",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "PhoneNo",
+                            "type": "AMAZON.PhoneNumber",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-PhoneNumber.IntentSlot-PhoneNo"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Intent-DateAndTime.IntentSlot-Date",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please say on which date are you travelling"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-DateAndTime.IntentSlot-Time",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me at what time are you travelling."
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-DriverOrRider.IntentSlot-role",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please say if you are a rider or driver"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-FromToIntent.IntentSlot-source",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me from where are you travelling"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-FromToIntent.IntentSlot-destination",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me to which place are you travelling?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-IntentNumber.IntentSlot-no",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which Number?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-PhoneNumber.IntentSlot-PhoneNo",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Please tell me your phone number"
+                    }
+                ]
+            }
+        ]
+    }
+}
